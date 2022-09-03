@@ -44,9 +44,9 @@ def modeloForm():
     contenido = request.form
     
     datosEntrada = np.array([
-            contenido['pH'],
-            contenido['sulphates'],
-            contenido['alcohol']
+            contenido['RoomService'],
+            contenido['Spa'],
+            contenido['Age']
         ])
     #Utilizar el modelo
     resultado=dt.predict(datosEntrada.reshape(1,-1))
@@ -61,9 +61,9 @@ def modelo():
     contenido = request.json
     print(contenido)
     datosEntrada = np.array([
-            contenido['pH'],
-            contenido['sulphates'],
-            contenido['alcohol']
+            contenido['RoomService'],
+            contenido['Spa'],
+            contenido['Age']
         ])
     #Utilizar el modelo
     resultado=dt.predict(datosEntrada.reshape(1,-1))
