@@ -1,3 +1,17 @@
+"""
+This file contains the services of our server in order to predict the
+result of the inter-dimensional travel.
+
+
+Authors:
+    - Luis Ignacio Ferro Salinas
+    - Rubén Sánchez Mayén
+
+
+Last update:
+    september 14th, 2022
+"""
+
 from flask import Flask, request, jsonify, render_template
 import numpy as np
 from joblib import load
@@ -5,74 +19,24 @@ from werkzeug.utils import secure_filename
 import os
 
 #Cargar el modelo
-dt = load('modelo.joblib')
+app_model = load("modelo_preliminar.joblib")
 
 #Generar el servidor (Back-end)
 servidorWeb = Flask(__name__)
-
-
-@servidorWeb.route("/formulario",methods=['GET'])
-def formulario():
-    return render_template('pagina.html')
-
-#Envio de datos a través de Archivos
-@servidorWeb.route('/modeloFile', methods=['POST'])
-def modeloFile():
-    f = request.files['file']
-    filename=secure_filename(f.filename)
-    path=os.path.join(os.getcwd(),'files',filename)
-    f.save(path)
-    file = open(path, "r")
-    
-    for x in file:
-        info=x.split()
-    print(info)
-    datosEntrada = np.array([
-            float(info[0]),
-            float(info[1]),
-            float(info[2])
-        ])
-    #Utilizar el modelo
-    resultado=dt.predict(datosEntrada.reshape(1,-1))
-    #Regresar la salida del modelo
-    return jsonify({"Resultado":str(resultado[0])})
-
-#Envio de datos a través de Forms
-@servidorWeb.route('/modeloForm', methods=['POST'])
-def modeloForm():
-    #Procesar datos de entrada 
-    contenido = request.form
-    
-    datosEntrada = np.array([
-            contenido['RoomService'],
-            contenido['Spa'],
-            contenido['Age']
-        ])
-    #Utilizar el modelo
-    resultado=dt.predict(datosEntrada.reshape(1,-1))
-    #Regresar la salida del modelo
-    return jsonify({"Resultado":str(resultado[0])})
-
-
-@servidorWeb.route("/test",methods=['GET'])
-def test():
-    print('hola')
-    #Procesar datos de entrada 
-    #contenido = request.json
-    #print(contenido)
-    return jsonify({'result':'Hola buenas'})
 
 @servidorWeb.route("/sendData",methods=['POST'])
 def sendData():
     #Procesar datos de entrada 
     contenido = request.json
+    print(contenido)
     datosEntrada = np.array([
-            int(contenido['roomService']),
-            int(contenido['spa']),
-            int(contenido['age'])
+            int(contenido['RoomService']),
+            int(contenido['Spa']),
+            int(contenido['Age'])
         ])
+
     #Utilizar el modelo
-    resultado=dt.predict(datosEntrada.reshape(1,-1))
+    resultado = app_model.predict(datosEntrada.reshape(1,-1))
 
     #Regresar la salida del modelo
     #print(resultado)
