@@ -49,6 +49,9 @@ def sendData():
             float(contenido["Destination_PSOJ318.5-22"]),
             float(contenido["Destination_TRAPPIST-1e"]),
             float(contenido["A"]),
+            float(contenido["HomePlanet_Earth"]),
+            float(contenido["HomePlanet_Mars"]),
+            float(contenido["01"]),
             float(contenido["08"]),
             float(contenido["constant"])]])
 
