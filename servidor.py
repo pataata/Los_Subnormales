@@ -54,7 +54,7 @@ def sendData():
             float(contenido["constant"])])
 
     print(datosEntrada)
-    return 1
+    return "1"
 
     #Utilizar el modelo
     resultado = app_model.predict(datosEntrada.reshape(1,-1))
