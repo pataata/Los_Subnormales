@@ -35,7 +35,6 @@ def sendData():
             float(contenido["VRDeck"]),
             float(contenido["VIP"]),
             float(contenido["FoodCourt"]),
-            float(contenido["Age"]),
             float(contenido["C"]),
             float(contenido["E"]),
             float(contenido["D"]),
