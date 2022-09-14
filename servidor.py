@@ -28,8 +28,8 @@ servidorWeb = Flask(__name__)
 def sendData():
     #Procesar datos de entrada 
     contenido = request.json
-    datosEntrada = np.array( \
-            [float(contenido["CryoSleep"])
+    datosEntrada = np.array( 
+            [float(contenido["CryoSleep"]),
             float(contenido["RoomService"]),
             float(contenido["Spa"]),
             float(contenido["VRDeck"]),
