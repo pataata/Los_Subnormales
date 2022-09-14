@@ -28,7 +28,7 @@ servidorWeb = Flask(__name__)
 def sendData():
     #Procesar datos de entrada 
     contenido = request.json
-    datosEntrada = np.array( 
+    X_to_pred = np.array( 
             [float(contenido["CryoSleep"]),
             float(contenido["RoomService"]),
             float(contenido["Spa"]),
@@ -52,15 +52,12 @@ def sendData():
             float(contenido["08"]),
             float(contenido["constant"])])
 
-    print(datosEntrada)
-    return "1"
-
-    #Utilizar el modelo
-    resultado = app_model.predict(datosEntrada.reshape(1,-1))
+    # Predict with highest score model.
+    y_pred = app_model.predict(X_to_pred)#datosEntrada.reshape(1,-1))
 
     #Regresar la salida del modelo
     #print(resultado)
-    return jsonify({"resultado":str(resultado[0])})
+    return jsonify({"resultado":str(y_pred[0])})
 
 if __name__ == '__main__':
     servidorWeb.run(debug=False,host='0.0.0.0',port='8080')
