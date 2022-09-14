@@ -15,7 +15,7 @@ Last update:
 from flask import Flask, request, jsonify, render_template
 import numpy as np
 from joblib import load
-from werkzeug.utils import secure_filename
+#from werkzeug.utils import secure_filename
 import os
 
 #Cargar el modelo
@@ -28,12 +28,33 @@ servidorWeb = Flask(__name__)
 def sendData():
     #Procesar datos de entrada 
     contenido = request.json
-    print(contenido)
     datosEntrada = np.array([
-            int(contenido['RoomService']),
-            int(contenido['Spa']),
-            int(contenido['Age'])
-        ])
+            float(contenido["CryoSleep"])
+            float(contenido["RoomService"]),
+            float(contenido["Spa"]),
+            float(contenido["VRDeck"]),
+            float(contenido["VIP"]),
+            float(contenido["FoodCourt"]),
+            float(contenido["Age"]),
+            float(contenido["C"]),
+            float(contenido["E"]),
+            float(contenido["D"]),
+            float(contenido["B"]),
+            float(contenido["T"]),
+            float(contenido["HomePlanet_Europa"]),
+            float(contenido["Age"]),
+            float(contenido["TotalBill"]),
+            float(contenido["S"]),
+            float(contenido["ShoppingMall"]),
+            float(contenido["Destination_55Cancrie"]),
+            float(contenido["Destination_PSOJ318.5-22"]),
+            float(contenido["Destination_TRAPPIST-1e"]),
+            float(contenido["A"]),
+            float(contenido["08"]),
+            float(contenido["constant"])])
+
+
+    return datosEntrada
 
     #Utilizar el modelo
     resultado = app_model.predict(datosEntrada.reshape(1,-1))
