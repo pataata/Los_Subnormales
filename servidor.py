@@ -53,7 +53,7 @@ def sendData():
             float(contenido["constant"])]])
 
     # Predict with highest score model.
-    y_pred = app_model.predict(X_to_pred)#datosEntrada.reshape(1,-1))
+    y_pred = app_model.predict(X_to_pred.reshape(1,-1))
 
     #Regresar la salida del modelo
     #print(resultado)
