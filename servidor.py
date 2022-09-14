@@ -29,7 +29,7 @@ def sendData():
     #Procesar datos de entrada 
     contenido = request.json
     X_to_pred = np.array( 
-            [float(contenido["CryoSleep"]),
+            [[float(contenido["CryoSleep"]),
             float(contenido["RoomService"]),
             float(contenido["Spa"]),
             float(contenido["VRDeck"]),
@@ -50,7 +50,7 @@ def sendData():
             float(contenido["Destination_TRAPPIST-1e"]),
             float(contenido["A"]),
             float(contenido["08"]),
-            float(contenido["constant"])])
+            float(contenido["constant"])]])
 
     # Predict with highest score model.
     y_pred = app_model.predict(X_to_pred)#datosEntrada.reshape(1,-1))
