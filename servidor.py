@@ -62,5 +62,35 @@ def sendData():
     #print(resultado)
     return jsonify({"resultado":str(y_pred[0])})
 
+@servidorWeb.route("/test",methods=['POST'])
+def processData():
+    #Procesar datos de entrada 
+    contenido = request.json
+    X_to_pred = np.array( 
+            [[float(contenido["CryoSleep"]),
+            float(contenido["RoomService"]),
+            float(contenido["Spa"]),
+            float(contenido["VRDeck"]),
+            float(contenido["VIP"]),
+            float(contenido["FoodCourt"]),
+            contenido["Cabin"],
+            contenido["HomePlanet"],
+            float(contenido["Age"]),
+            #float(contenido["TotalBill"]),
+            contenido["Side"],
+            float(contenido["ShoppingMall"]),
+            contenido["Destination"],
+            float(contenido["GroupID"]),
+            #float(contenido["constant"])
+            ]])
+    print(X_to_pred)
+
+    # Predict with highest score model.
+    #y_pred = app_model.predict(X_to_pred.reshape(1,-1))
+
+    #Regresar la salida del modelo
+    #print(resultado)
+    return jsonify({"resultado":'JSON Recibido'})
+
 if __name__ == '__main__':
     servidorWeb.run(debug=False,host='0.0.0.0',port='8080')
