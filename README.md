@@ -1,5 +1,7 @@
 # Los_Subnormales
 
+Seguimos la normatividad en el ambiente de este reto que era kaggle, por ejemplo al subir solamente el límite de submissions por día.
+
 El link del notebook de google colab donde desarrollamos el modelo:
 https://colab.research.google.com/drive/1mrjdmwS8E6C0RwM04qNUW1feNAyGhF0L?usp=sharing
 
